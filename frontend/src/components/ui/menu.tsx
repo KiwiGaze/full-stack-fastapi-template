@@ -15,7 +15,17 @@ export const MenuContent = React.forwardRef<HTMLDivElement, MenuContentProps>(
     return (
       <Portal disabled={!portalled} container={portalRef}>
         <ChakraMenu.Positioner>
-          <ChakraMenu.Content ref={ref} {...rest} />
+          <ChakraMenu.Content
+            ref={ref}
+            maxW={{ base: "calc(100vw - 1rem)", md: "unset" }}
+            w={{ base: "auto", md: "max-content" }}
+            maxH={{ base: "60vh", md: "unset" }}
+            overflowY={{ base: "auto", md: "visible" }}
+            p={1}
+            shadow="md"
+            rounded="md"
+            {...rest}
+          />
         </ChakraMenu.Positioner>
       </Portal>
     )

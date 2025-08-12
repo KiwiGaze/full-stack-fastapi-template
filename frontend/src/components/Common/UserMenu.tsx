@@ -17,15 +17,22 @@ const UserMenu = () => {
     <>
       {/* Desktop */}
       <Flex>
-        <MenuRoot>
+        <MenuRoot positioning={{ placement: "bottom-end" }}>
           <MenuTrigger asChild p={2}>
-            <Button data-testid="user-menu" variant="solid" maxW="sm" truncate>
+            <Button
+              data-testid="user-menu"
+              variant="solid"
+              maxW={{ base: "xs", md: "sm" }}
+              truncate
+            >
               <FaUserAstronaut fontSize="18" />
-              <Text>{user?.full_name || "User"}</Text>
+              <Text display={{ base: "none", sm: "inline" }}>
+                {user?.full_name || "User"}
+              </Text>
             </Button>
           </MenuTrigger>
 
-          <MenuContent>
+          <MenuContent portalled>
             <Link to="settings">
               <MenuItem
                 closeOnSelect

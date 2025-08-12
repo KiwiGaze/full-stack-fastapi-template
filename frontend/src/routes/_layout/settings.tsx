@@ -30,20 +30,40 @@ function UserSettings() {
 
   return (
     <Container maxW="full">
-      <Heading size="lg" textAlign={{ base: "center", md: "left" }} py={12}>
+      <Heading
+        size="lg"
+        textAlign={{ base: "center", md: "left" }}
+        py={{ base: 6, md: 12 }}
+      >
         User Settings
       </Heading>
 
       <Tabs.Root defaultValue="my-profile" variant="subtle">
-        <Tabs.List>
+        <Tabs.List
+          display="flex"
+          gap={{ base: 2, md: 3 }}
+          overflowX="auto"
+          whiteSpace="nowrap"
+          px={{ base: 2, md: 0 }}
+        >
           {finalTabs.map((tab) => (
-            <Tabs.Trigger key={tab.value} value={tab.value}>
+            <Tabs.Trigger
+              key={tab.value}
+              value={tab.value}
+              flexShrink={0}
+              px={{ base: 3, md: 4 }}
+              py={{ base: 2, md: 2.5 }}
+            >
               {tab.title}
             </Tabs.Trigger>
           ))}
         </Tabs.List>
         {finalTabs.map((tab) => (
-          <Tabs.Content key={tab.value} value={tab.value}>
+          <Tabs.Content
+            key={tab.value}
+            value={tab.value}
+            px={{ base: 2, md: 0 }}
+          >
             <tab.component />
           </Tabs.Content>
         ))}

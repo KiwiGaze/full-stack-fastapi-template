@@ -8,8 +8,8 @@ const Appearance = () => {
 
   return (
     <>
-      <Container maxW="full">
-        <Heading size="sm" py={4}>
+      <Container maxW="full" px={{ base: 2, md: 0 }}>
+        <Heading size="sm" py={{ base: 2, md: 4 }}>
           Appearance
         </Heading>
 
@@ -18,7 +18,7 @@ const Appearance = () => {
           value={theme ?? "system"}
           colorPalette="blue"
         >
-          <Stack>
+          <Stack gap={{ base: 2, md: 3 }}>
             <Radio value="system">System</Radio>
             <Radio value="light">Light Mode</Radio>
             <Radio value="dark">Dark Mode</Radio>

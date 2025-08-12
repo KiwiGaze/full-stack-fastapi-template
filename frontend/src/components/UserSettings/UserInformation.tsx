@@ -71,12 +71,12 @@ const UserInformation = () => {
 
   return (
     <>
-      <Container maxW="full">
-        <Heading size="sm" py={4}>
+      <Container maxW="full" px={{ base: 2, md: 0 }}>
+        <Heading size="sm" py={{ base: 2, md: 4 }}>
           User Information
         </Heading>
         <Box
-          w={{ sm: "full", md: "sm" }}
+          w={{ base: "100%", md: "sm" }}
           as="form"
           onSubmit={handleSubmit(onSubmit)}
         >
@@ -90,10 +90,10 @@ const UserInformation = () => {
             ) : (
               <Text
                 fontSize="md"
-                py={2}
+                py={{ base: 1, md: 2 }}
                 color={!currentUser?.full_name ? "gray" : "inherit"}
                 truncate
-                maxW="sm"
+                maxW={{ base: "100%", md: "sm" }}
               >
                 {currentUser?.full_name || "N/A"}
               </Text>
@@ -115,12 +115,17 @@ const UserInformation = () => {
                 size="md"
               />
             ) : (
-              <Text fontSize="md" py={2} truncate maxW="sm">
+              <Text
+                fontSize="md"
+                py={{ base: 1, md: 2 }}
+                truncate
+                maxW={{ base: "100%", md: "sm" }}
+              >
                 {currentUser?.email}
               </Text>
             )}
           </Field>
-          <Flex mt={4} gap={3}>
+          <Flex mt={4} gap={3} direction={{ base: "column", sm: "row" }}>
             <Button
               variant="solid"
               onClick={toggleEditMode}

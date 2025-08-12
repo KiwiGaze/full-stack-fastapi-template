@@ -13,13 +13,18 @@ interface UserActionsMenuProps {
 
 export const UserActionsMenu = ({ user, disabled }: UserActionsMenuProps) => {
   return (
-    <MenuRoot>
+    <MenuRoot positioning={{ placement: "bottom-end" }}>
       <MenuTrigger asChild>
-        <IconButton variant="ghost" color="inherit" disabled={disabled}>
+        <IconButton
+          aria-label="Open actions"
+          variant="ghost"
+          color="inherit"
+          disabled={disabled}
+        >
           <BsThreeDotsVertical />
         </IconButton>
       </MenuTrigger>
-      <MenuContent>
+      <MenuContent portalled>
         <EditUser user={user} />
         <DeleteUser id={user.id} />
       </MenuContent>
