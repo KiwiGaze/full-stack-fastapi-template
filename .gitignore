@@ -4,3 +4,8 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+CLAUDE.md
+.claude
+.env
+docs
+.DS_Store

@@ -1,0 +1,9 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+  <!-- Premium inverted: white V on brand.700 tile with subtle border and cyan facet -->
+  <rect x="0.5" y="0.5" width="23" height="23" rx="8" fill="#1D4ED8" stroke="#1E40AF" stroke-width="1"/>
+  <!-- Geometric V with chamfered apex, inset from corners to avoid visual cropping -->
+  <path d="M5.75 7.75 L12 18.5 L18.25 7.75 L16 7.75 L12 14.4 L8 7.75 Z" fill="#FFFFFF"/>
+  
+</svg>
+
+
