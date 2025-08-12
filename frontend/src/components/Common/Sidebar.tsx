@@ -222,7 +222,7 @@ const Sidebar = () => {
             </IconButton>
           </Flex>
         ) : (
-          <Flex align="center" justify="space-between" mb={3} pl={4}>
+          <Flex align="center" justify="space-between" mb={6} pl={4}>
             <Link to="/">
               <Image src={Logo} alt="Logo" boxSize={8} p={0} />
             </Link>
