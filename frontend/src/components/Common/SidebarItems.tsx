@@ -1,14 +1,13 @@
 import { Box, Flex, Icon, Text } from "@chakra-ui/react"
 import { useQueryClient } from "@tanstack/react-query"
 import { Link as RouterLink } from "@tanstack/react-router"
-import { FiHome, FiSettings, FiUsers } from "react-icons/fi"
+import { FiHome, FiUsers } from "react-icons/fi"
 import type { IconType } from "react-icons/lib"
 
 import type { UserPublic } from "@/client"
 
 const items = [
   { icon: FiHome, title: "Dashboard", path: "/" },
-  { icon: FiSettings, title: "User Settings", path: "/settings" },
 ]
 
 interface SidebarItemsProps {
@@ -34,12 +33,11 @@ const SidebarItems = ({ onClose, collapsed = false }: SidebarItemsProps) => {
     <RouterLink key={title} to={path} onClick={onClose}>
       <Flex
         gap={collapsed ? 0 : 4}
-        px={collapsed ? 2 : 6}
-        py={4}
+        px={collapsed ? 0 : 4}
+        py={collapsed ? 2 : 4}
         _hover={{
           background: "gray.subtle",
-          borderRadius: "md",
-          transform: collapsed ? "scale(1.05)" : "translateX(2px)",
+          borderRadius: "xl",
           transition: "all 0.2s",
         }}
         alignItems="center"
@@ -59,14 +57,7 @@ const SidebarItems = ({ onClose, collapsed = false }: SidebarItemsProps) => {
   ))
 
   return (
-    <>
-      {!collapsed && (
-        <Text fontSize="sm" px={6} py={3} fontWeight="bold" color="gray.500" textTransform="uppercase" letterSpacing="wide">
-          Menu
-        </Text>
-      )}
-      <Box px={collapsed ? 0 : 2}>{listItems}</Box>
-    </>
+    <Box>{listItems}</Box>
   )
 }
 

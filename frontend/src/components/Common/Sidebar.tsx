@@ -1,8 +1,11 @@
-import { Box, Flex, IconButton, Text } from "@chakra-ui/react"
+import { Box, Flex, IconButton, Text, Image, Icon } from "@chakra-ui/react"
+import { Link } from "@tanstack/react-router"
 import { useQueryClient } from "@tanstack/react-query"
 import { useState } from "react"
 import { FaBars } from "react-icons/fa"
-import { FiLogOut, FiChevronLeft, FiChevronRight } from "react-icons/fi"
+import { FiLogOut, FiSettings } from "react-icons/fi"
+import { LuAlignRight, LuAlignLeft } from "react-icons/lu"
+import Logo from "/assets/images/logo-v-inverted.svg"
 
 import type { UserPublic } from "@/client"
 import useAuth from "@/hooks/useAuth"
@@ -14,6 +17,7 @@ import {
   DrawerRoot,
   DrawerTrigger,
 } from "../ui/drawer"
+import { MenuContent, MenuItem, MenuRoot, MenuTrigger } from "../ui/menu"
 import SidebarItems from "./SidebarItems"
 
 const Sidebar = () => {
@@ -45,9 +49,14 @@ const Sidebar = () => {
             <FaBars />
           </IconButton>
         </DrawerTrigger>
-        <DrawerContent maxW="280px">
-          <DrawerCloseTrigger />
-          <DrawerBody p={6}>
+        <DrawerContent maxW="280px" bg="bg.subtle" position="relative">
+          <Flex justify="space-between" align="center" p={4}>
+            <Link to="/">
+              <Image src={Logo} alt="Logo" boxSize={{ base: 8, md: 9 }} p={0} />
+            </Link>
+            <DrawerCloseTrigger size="md" position="static" top="auto" insetEnd="auto" ml="auto" />
+          </Flex>
+          <DrawerBody px={4} py={6}>
             <Flex flexDir="column" justify="space-between" h="full">
               <Box>
                 <SidebarItems onClose={() => setOpen(false)} />
@@ -77,13 +86,102 @@ const Sidebar = () => {
                   </Flex>
                 </Box>
               </Box>
-              {currentUser?.email && (
-                <Text fontSize="sm" p={4} truncate maxW="sm" color="gray.500" bg="gray.50" borderRadius="md">
-                  Logged in as: {currentUser.email}
-                </Text>
-              )}
             </Flex>
           </DrawerBody>
+
+          {/* Mobile bottom user section */}
+          <Box position="absolute" insetX={4} bottom={4}>
+            <MenuRoot positioning={{ placement: "top-start" }}>
+              <MenuTrigger asChild>
+                <Flex
+                  align="center"
+                  gap={3}
+                  p={3}
+                  bg="white"
+                  borderRadius="lg"
+                  borderWidth="1px"
+                  borderColor="gray.200"
+                  _hover={{ 
+                    bg: "gray.50",
+                    borderColor: "gray.300",
+                    boxShadow: "sm"
+                  }}
+                  cursor="pointer"
+                  transition="all 0.2s ease"
+                  boxShadow="xs"
+                >
+                  <Box 
+                    w={8} 
+                    h={8} 
+                    borderRadius="full" 
+                    bg="gray.500"
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    color="white"
+                    fontWeight="bold"
+                    fontSize="md"
+                  >
+                    {(currentUser?.full_name || "U").charAt(0).toUpperCase()}
+                  </Box>
+                  <Box flex="1" minW={0}>
+                    <Text fontWeight="semibold" truncate fontSize="sm">
+                      {currentUser?.full_name || "User Name"}
+                    </Text>
+                    <Text fontSize="xs" color="gray.500" truncate>
+                      {currentUser?.email || "user@example.com"}
+                    </Text>
+                  </Box>
+                </Flex>
+              </MenuTrigger>
+              <MenuContent 
+                w="256px" 
+                bg="white" 
+                borderRadius="lg" 
+                boxShadow="lg" 
+                borderWidth="1px" 
+                borderColor="gray.200"
+                p={1}
+                zIndex="999999"
+              >
+                <Link to="settings">
+                  <MenuItem 
+                    value="settings" 
+                    closeOnSelect 
+                    minH={12}
+                    _hover={{ 
+                      bg: "gray.subtle",
+                      borderRadius: "xl" 
+                    }}
+                    borderRadius="md"
+                    style={{ cursor: "pointer" }}
+                  >
+                    <Flex align="center" gap={4} px={3} py={2} w="full">
+                      <Icon as={FiSettings} boxSize={5} />
+                      <Text fontWeight="medium">Settings</Text>
+                    </Flex>
+                  </MenuItem>
+                </Link>
+                <MenuItem 
+                  value="logout" 
+                  minH={12}
+                  _hover={{ 
+                    bg: "red.50", 
+                    color: "red.600",
+                    borderRadius: "xl" 
+                  }}
+                  borderRadius="md"
+                  onClick={() => logout()} 
+                  style={{ cursor: "pointer" }}
+                >
+                  <Flex align="center" gap={4} px={3} py={2} w="full">
+                    <Icon as={FiLogOut} boxSize={5} />
+                    <Text fontWeight="medium">Logout</Text>
+                  </Flex>
+                </MenuItem>
+              </MenuContent>
+            </MenuRoot>
+          </Box>
         </DrawerContent>
       </DrawerRoot>
 
@@ -92,30 +190,164 @@ const Sidebar = () => {
       <Box
         display={{ base: "none", md: "flex" }}
         position="sticky"
-        bg="bg.subtle"
+        bg="bg.panel"
         top={0}
         w={collapsed ? "80px" : "280px"}
         h="100vh"
-        p={collapsed ? 4 : 6}
+        px={collapsed ? 2 : 4}
+        py={4}
         borderRight="1px solid"
         borderColor="gray.200"
-        shadow="sm"
         transition="all 0.3s ease"
         flexDirection="column"
       >
-        <Flex justify={collapsed ? "center" : "flex-end"} mb={4}>
-          <IconButton
-            variant="ghost"
-            size="sm"
-            onClick={() => setCollapsed(!collapsed)}
-            aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-            _hover={{ bg: "gray.100" }}
-          >
-            {collapsed ? <FiChevronRight /> : <FiChevronLeft />}
-          </IconButton>
-        </Flex>
-        <Box flex="1" overflow="hidden">
-          <SidebarItems collapsed={collapsed} />
+        {collapsed ? (
+          <Flex align="center" justify="center" direction="column" gap={3}>
+            <Link to="/">
+              <Image src={Logo} alt="Logo" boxSize={7}/>
+            </Link>
+            <IconButton
+              variant="ghost"
+              color="black"
+              size="md"
+              onClick={() => setCollapsed(!collapsed)}
+              aria-label="Expand sidebar"
+              _hover={{ 
+                bg: "gray.100",
+                borderRadius: "xl"
+              }}
+              p={6}
+            >
+              <Icon as={LuAlignRight} boxSize={6} />
+            </IconButton>
+          </Flex>
+        ) : (
+          <Flex align="center" justify="space-between" mb={3} pl={4}>
+            <Link to="/">
+              <Image src={Logo} alt="Logo" boxSize={8} p={0} />
+            </Link>
+            <IconButton
+              variant="ghost"
+              color="black"
+              size="md"
+              onClick={() => setCollapsed(!collapsed)}
+              aria-label="Collapse sidebar"
+              _hover={{ bg: "gray.100" }}
+            >
+              <Icon as={LuAlignLeft} boxSize={6} />
+            </IconButton>
+          </Flex>
+        )}
+        <SidebarItems collapsed={collapsed} />
+
+        {/* Desktop bottom user section */}
+        <Box mt="auto" px={collapsed ? 0 : 2}>
+          <MenuRoot positioning={{ placement: "top-start" }}>
+            <MenuTrigger asChild>
+              <Flex
+                align="center"
+                gap={collapsed ? 0 : 3}
+                p={collapsed ? 2 : 3}
+                bg="white"
+                borderRadius="lg"
+                borderWidth="1px"
+                borderColor="gray.200"
+                _hover={{ 
+                  bg: "gray.50",
+                  borderColor: "gray.300",
+                  boxShadow: "sm"
+                }}
+                cursor="pointer"
+                transition="all 0.2s ease"
+                justifyContent={collapsed ? "center" : "flex-start"}
+                boxShadow="xs"
+              >
+                <Box 
+                  w={collapsed ? 7 : 8} 
+                  h={collapsed ? 7 : 8} 
+                  borderRadius="full" 
+                  bg="gray.500"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  color="white"
+                  fontWeight="bold"
+                  fontSize={collapsed ? "sm" : "md"}
+                >
+                  {(currentUser?.full_name || "U").charAt(0).toUpperCase()}
+                </Box>
+                {!collapsed && (
+                  <Box flex="1" minW={0}>
+                    <Text fontWeight="semibold" truncate fontSize="sm">
+                      {currentUser?.full_name || "User Name"}
+                    </Text>
+                    <Text fontSize="xs" color="gray.500" truncate>
+                      {currentUser?.email || "user@example.com"}
+                    </Text>
+                  </Box>
+                )}
+              </Flex>
+            </MenuTrigger>
+            <MenuContent 
+              w="247px"
+              bg="white" 
+              borderRadius="lg" 
+              boxShadow="lg" 
+              borderWidth="1px" 
+              borderColor="gray.200"
+              p={1}
+            >
+              <Link to="settings">
+                <MenuItem 
+                  value="settings" 
+                  closeOnSelect 
+                  minH={12}
+                  _hover={{ 
+                    bg: "gray.subtle",
+                    borderRadius: "xl" 
+                  }}
+                  borderRadius="md"
+                  style={{ cursor: "pointer" }}
+                >
+                  <Flex 
+                    align="center" 
+                    gap={4} 
+                    px={3} 
+                    py={2} 
+                    w="full"
+                    justifyContent={"flex-start"}
+                  >
+                    <Icon as={FiSettings} boxSize={5} />
+                    <Text fontWeight="medium">Settings</Text>
+                  </Flex>
+                </MenuItem>
+              </Link>
+              <MenuItem 
+                value="logout" 
+                minH={12}
+                _hover={{ 
+                  bg: "red.50", 
+                  color: "red.600",
+                  borderRadius: "xl" 
+                }}
+                borderRadius="md"
+                onClick={() => logout()} 
+                style={{ cursor: "pointer" }}
+              >
+                <Flex 
+                  align="center" 
+                  gap={4} 
+                  px={3} 
+                  py={2} 
+                  w="full"
+                  justifyContent={"flex-start"}
+                >
+                  <Icon as={FiLogOut} boxSize={5} />
+                  <Text fontWeight="medium">Logout</Text>
+                </Flex>
+              </MenuItem>
+            </MenuContent>
+          </MenuRoot>
         </Box>
       </Box>
     </>

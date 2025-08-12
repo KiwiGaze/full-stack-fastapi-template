@@ -1,7 +1,5 @@
-import { Flex, Image, useBreakpointValue } from "@chakra-ui/react"
-import { Link } from "@tanstack/react-router"
+import { Flex, useBreakpointValue } from "@chakra-ui/react"
 
-import Logo from "/assets/images/logo-v-inverted.svg"
 import UserMenu from "./UserMenu"
 
 function Navbar() {
@@ -14,14 +12,13 @@ function Navbar() {
       position="sticky"
       color="white"
       align="center"
-      bg="bg.muted"
+      bg="bg.subtle"
       w="100%"
       top={0}
       p={4}
     >
-      <Link to="/">
-        <Image src={Logo} alt="Logo" boxSize={{ base: 8, md: 9 }} p={0} />
-      </Link>
+      {/* Desktop logo moved to Sidebar top. Keep mobile hidden Navbar anyway. */}
+      <span />
       <Flex gap={2} alignItems="center">
         <UserMenu />
       </Flex>

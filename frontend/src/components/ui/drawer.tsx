@@ -26,17 +26,18 @@ export const DrawerContent = React.forwardRef<
 
 export const DrawerCloseTrigger = React.forwardRef<
   HTMLButtonElement,
-  ChakraDrawer.CloseTriggerProps
+  ChakraDrawer.CloseTriggerProps & React.ComponentProps<typeof CloseButton>
 >(function DrawerCloseTrigger(props, ref) {
+  const { size, ...rest } = props
   return (
     <ChakraDrawer.CloseTrigger
       position="absolute"
       top="2"
       insetEnd="2"
-      {...props}
+      {...rest}
       asChild
     >
-      <CloseButton size="sm" ref={ref} />
+      <CloseButton size={size ?? "sm"} ref={ref} />
     </ChakraDrawer.CloseTrigger>
   )
 })
