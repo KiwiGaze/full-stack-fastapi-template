@@ -11,6 +11,11 @@ Use it as the canonical quick reference for commands, common workflows, and guar
 
 A production‑ready full‑stack template (FastAPI + SQLModel + PostgreSQL, React + Vite + Chakra UI + shadcn/ui) used here to build a pet health tracking MVP. Core flows: account signup/login, pet profiles, health metrics and symptom logging, timeline, CSV/Text export, and settings. See `docs/Use Case MVP 1.0.md` and `docs/User Story.md` for the detailed scope.
 
+**UI Development Strategy**: 
+- **Existing components**: Continue using Chakra UI
+- **New components**: Use shadcn/ui + TailwindCSS
+- **Design consistency**: Maintain Clinical Blue design system across both libraries
+
 
 ## Golden Rules for Assistants
 
@@ -171,23 +176,6 @@ Before writing frontend code, review the following files to ensure consistent UI
   - `react-icons` (Feather `Fi*`, Font Awesome `Fa*`, Heroicons v2 `Hi2*`, Bootstrap `Bs*`)
   - `lucide-react` (for shadcn/ui components)
 
-### New Component Development Guidelines
-
-**For new UI components, use shadcn/ui + TailwindCSS**:
-
-```bash
-# Install shadcn/ui component (example: button)
-npx shadcn-ui@latest add button
-
-# Use the installed component
-import { Button } from "@/components/ui/button"
-```
-
-**Component file structure**:
-- Chakra UI components: `frontend/src/components/ui/` (existing)
-- shadcn/ui components: `frontend/src/components/ui/` (new, auto-generated)
-- Custom TailwindCSS utilities: `frontend/src/lib/utils.ts`
-
 ```bash
 # Dev server / build / lint
 cd frontend && npm run dev
@@ -296,4 +284,5 @@ cd frontend && npx playwright test tests/reset-password.spec.ts -g "happy path"
 - Backend docs: `backend/README.md`
 - Dev environment & URLs: `development.md`
 - Deployment: `deployment.md`
+
 

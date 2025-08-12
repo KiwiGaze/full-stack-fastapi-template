@@ -8,7 +8,8 @@ export const buttonRecipe = defineRecipe({
     fontWeight: "semibold",
     letterSpacing: "-0.01em",
     borderRadius: "6px",
-    transitionProperty: "background, color, border-color, box-shadow, transform",
+    transitionProperty:
+      "background, color, border-color, box-shadow, transform",
     transitionDuration: "150ms",
     colorPalette: "blue",
     _focusVisible: { boxShadow: "focus" },

@@ -105,11 +105,11 @@ export const system = createSystem(defaultConfig, {
         },
       },
       fontSizes: {
-        xs: { value: "0.75rem" },   // 12px
-        sm: { value: "0.875rem" },  // 14px
-        md: { value: "1rem" },      // 16px
-        lg: { value: "1.125rem" },  // 18px
-        xl: { value: "1.25rem" },   // 20px
+        xs: { value: "0.75rem" }, // 12px
+        sm: { value: "0.875rem" }, // 14px
+        md: { value: "1rem" }, // 16px
+        lg: { value: "1.125rem" }, // 18px
+        xl: { value: "1.25rem" }, // 20px
         "2xl": { value: "1.5rem" }, // 24px
         "3xl": { value: "1.875rem" }, // 30px
         "4xl": { value: "2.25rem" }, // 36px
@@ -178,8 +178,12 @@ export const system = createSystem(defaultConfig, {
         thick: { value: "2px" },
       },
       shadows: {
-        sm: { value: "0 1px 0 rgba(15,23,42,0.06), 0 1px 2px rgba(15,23,42,0.08)" },
-        md: { value: "0 2px 4px rgba(15,23,42,0.06), 0 4px 8px rgba(15,23,42,0.08)" },
+        sm: {
+          value: "0 1px 0 rgba(15,23,42,0.06), 0 1px 2px rgba(15,23,42,0.08)",
+        },
+        md: {
+          value: "0 2px 4px rgba(15,23,42,0.06), 0 4px 8px rgba(15,23,42,0.08)",
+        },
         focus: { value: "0 0 0 3px {colors.focus.ring}" },
       },
       durations: {
