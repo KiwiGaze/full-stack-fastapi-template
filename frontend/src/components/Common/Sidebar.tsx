@@ -97,13 +97,13 @@ const Sidebar = () => {
                   align="center"
                   gap={3}
                   p={3}
-                  bg="white"
+                  bg="bg.panel"
                   borderRadius="lg"
                   borderWidth="1px"
-                  borderColor="gray.200"
+                  borderColor="bg.emphasized"
                   _hover={{ 
-                    bg: "gray.50",
-                    borderColor: "gray.300",
+                    bg: "bg.subtle",
+                    borderColor: "bg.emphasized",
                     boxShadow: "sm"
                   }}
                   cursor="pointer"
@@ -136,11 +136,11 @@ const Sidebar = () => {
               </MenuTrigger>
               <MenuContent 
                 w="256px" 
-                bg="white" 
+                bg="bg.panel" 
                 borderRadius="lg" 
                 boxShadow="lg" 
                 borderWidth="1px" 
-                borderColor="gray.200"
+                borderColor="bg.emphasized"
                 p={1}
                 zIndex="999999"
               >
@@ -150,7 +150,7 @@ const Sidebar = () => {
                     closeOnSelect 
                     minH={12}
                     _hover={{ 
-                      bg: "gray.subtle",
+                      bg: "bg.subtle",
                       borderRadius: "xl" 
                     }}
                     borderRadius="md"
@@ -166,7 +166,7 @@ const Sidebar = () => {
                   value="logout" 
                   minH={12}
                   _hover={{ 
-                    bg: "red.50", 
+                    bg: "bg.subtle",
                     color: "red.600",
                     borderRadius: "xl" 
                   }}
@@ -197,7 +197,7 @@ const Sidebar = () => {
         px={collapsed ? 2 : 4}
         py={4}
         borderRight="1px solid"
-        borderColor="gray.200"
+        borderColor="bg.emphasized"
         transition="all 0.3s ease"
         flexDirection="column"
       >
@@ -208,14 +208,9 @@ const Sidebar = () => {
             </Link>
             <IconButton
               variant="ghost"
-              color="black"
               size="md"
               onClick={() => setCollapsed(!collapsed)}
               aria-label="Expand sidebar"
-              _hover={{ 
-                bg: "gray.100",
-                borderRadius: "xl"
-              }}
               p={6}
             >
               <Icon as={LuAlignRight} boxSize={6} />
@@ -228,13 +223,11 @@ const Sidebar = () => {
             </Link>
             <IconButton
               variant="ghost"
-              color="black"
               size="md"
               onClick={() => setCollapsed(!collapsed)}
               aria-label="Collapse sidebar"
-              _hover={{ bg: "gray.100" }}
             >
-              <Icon as={LuAlignLeft} boxSize={6} />
+              <Icon as={LuAlignLeft} boxSize={5} />
             </IconButton>
           </Flex>
         )}
@@ -248,13 +241,13 @@ const Sidebar = () => {
                 align="center"
                 gap={collapsed ? 0 : 3}
                 p={collapsed ? 2 : 3}
-                bg="white"
+                bg="bg.panel"
                 borderRadius="lg"
                 borderWidth="1px"
-                borderColor="gray.200"
+                borderColor="bg.emphasized"
                 _hover={{ 
-                  bg: "gray.50",
-                  borderColor: "gray.300",
+                  bg: "bg.subtle",
+                  borderColor: "bg.emphasized",
                   boxShadow: "sm"
                 }}
                 cursor="pointer"
@@ -290,11 +283,11 @@ const Sidebar = () => {
             </MenuTrigger>
             <MenuContent 
               w="247px"
-              bg="white" 
+              bg="bg.panel" 
               borderRadius="lg" 
               boxShadow="lg" 
               borderWidth="1px" 
-              borderColor="gray.200"
+              borderColor="bg.emphasized"
               p={1}
             >
               <Link to="settings">
@@ -303,7 +296,7 @@ const Sidebar = () => {
                   closeOnSelect 
                   minH={12}
                   _hover={{ 
-                    bg: "gray.subtle",
+                    bg: "bg.subtle",
                     borderRadius: "xl" 
                   }}
                   borderRadius="md"
@@ -326,8 +319,8 @@ const Sidebar = () => {
                 value="logout" 
                 minH={12}
                 _hover={{ 
-                  bg: "red.50", 
-                  color: "red.600",
+                  bg: "red.subtle", 
+                  color: "red.emphasized",
                   borderRadius: "xl" 
                 }}
                 borderRadius="md"
