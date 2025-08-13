@@ -1,10 +1,10 @@
-import { Box, Flex, IconButton, Text, Image, Icon } from "@chakra-ui/react"
-import { Link } from "@tanstack/react-router"
+import { Box, Flex, Icon, IconButton, Image, Text } from "@chakra-ui/react"
 import { useQueryClient } from "@tanstack/react-query"
+import { Link } from "@tanstack/react-router"
 import { useState } from "react"
 import { FaBars } from "react-icons/fa"
 import { FiLogOut, FiSettings } from "react-icons/fi"
-import { LuAlignRight, LuAlignLeft } from "react-icons/lu"
+import { LuAlignLeft, LuAlignRight } from "react-icons/lu"
 import Logo from "/assets/images/logo-v-inverted.svg"
 
 import type { UserPublic } from "@/client"
@@ -54,7 +54,13 @@ const Sidebar = () => {
             <Link to="/">
               <Image src={Logo} alt="Logo" boxSize={{ base: 8, md: 9 }} p={0} />
             </Link>
-            <DrawerCloseTrigger size="md" position="static" top="auto" insetEnd="auto" ml="auto" />
+            <DrawerCloseTrigger
+              size="md"
+              position="static"
+              top="auto"
+              insetEnd="auto"
+              ml="auto"
+            />
           </Flex>
           <DrawerBody px={4} py={6}>
             <Flex flexDir="column" justify="space-between" h="full">
@@ -101,19 +107,19 @@ const Sidebar = () => {
                   borderRadius="lg"
                   borderWidth="1px"
                   borderColor="bg.emphasized"
-                  _hover={{ 
+                  _hover={{
                     bg: "bg.subtle",
                     borderColor: "bg.emphasized",
-                    boxShadow: "sm"
+                    boxShadow: "sm",
                   }}
                   cursor="pointer"
                   transition="all 0.2s ease"
                   boxShadow="xs"
                 >
-                  <Box 
-                    w={8} 
-                    h={8} 
-                    borderRadius="full" 
+                  <Box
+                    w={8}
+                    h={8}
+                    borderRadius="full"
                     bg="gray.500"
                     display="flex"
                     alignItems="center"
@@ -134,24 +140,24 @@ const Sidebar = () => {
                   </Box>
                 </Flex>
               </MenuTrigger>
-              <MenuContent 
-                w="256px" 
-                bg="bg.panel" 
-                borderRadius="lg" 
-                boxShadow="lg" 
-                borderWidth="1px" 
+              <MenuContent
+                w="256px"
+                bg="bg.panel"
+                borderRadius="lg"
+                boxShadow="lg"
+                borderWidth="1px"
                 borderColor="bg.emphasized"
                 p={1}
                 zIndex="999999"
               >
                 <Link to="settings">
-                  <MenuItem 
-                    value="settings" 
-                    closeOnSelect 
+                  <MenuItem
+                    value="settings"
+                    closeOnSelect
                     minH={12}
-                    _hover={{ 
+                    _hover={{
                       bg: "bg.subtle",
-                      borderRadius: "xl" 
+                      borderRadius: "xl",
                     }}
                     borderRadius="md"
                     style={{ cursor: "pointer" }}
@@ -162,16 +168,16 @@ const Sidebar = () => {
                     </Flex>
                   </MenuItem>
                 </Link>
-                <MenuItem 
-                  value="logout" 
+                <MenuItem
+                  value="logout"
                   minH={12}
-                  _hover={{ 
+                  _hover={{
                     bg: "bg.subtle",
                     color: "red.600",
-                    borderRadius: "xl" 
+                    borderRadius: "xl",
                   }}
                   borderRadius="md"
-                  onClick={() => logout()} 
+                  onClick={() => logout()}
                   style={{ cursor: "pointer" }}
                 >
                   <Flex align="center" gap={4} px={3} py={2} w="full">
@@ -204,7 +210,7 @@ const Sidebar = () => {
         {collapsed ? (
           <Flex align="center" justify="center" direction="column" gap={3}>
             <Link to="/">
-              <Image src={Logo} alt="Logo" boxSize={7}/>
+              <Image src={Logo} alt="Logo" boxSize={7} />
             </Link>
             <IconButton
               variant="ghost"
@@ -245,20 +251,20 @@ const Sidebar = () => {
                 borderRadius="lg"
                 borderWidth="1px"
                 borderColor="bg.emphasized"
-                _hover={{ 
+                _hover={{
                   bg: "bg.subtle",
                   borderColor: "bg.emphasized",
-                  boxShadow: "sm"
+                  boxShadow: "sm",
                 }}
                 cursor="pointer"
                 transition="all 0.2s ease"
                 justifyContent={collapsed ? "center" : "flex-start"}
                 boxShadow="xs"
               >
-                <Box 
-                  w={collapsed ? 7 : 8} 
-                  h={collapsed ? 7 : 8} 
-                  borderRadius="full" 
+                <Box
+                  w={collapsed ? 7 : 8}
+                  h={collapsed ? 7 : 8}
+                  borderRadius="full"
                   bg="gray.500"
                   display="flex"
                   alignItems="center"
@@ -281,32 +287,32 @@ const Sidebar = () => {
                 )}
               </Flex>
             </MenuTrigger>
-            <MenuContent 
+            <MenuContent
               w="247px"
-              bg="bg.panel" 
-              borderRadius="lg" 
-              boxShadow="lg" 
-              borderWidth="1px" 
+              bg="bg.panel"
+              borderRadius="lg"
+              boxShadow="lg"
+              borderWidth="1px"
               borderColor="bg.emphasized"
               p={1}
             >
               <Link to="settings">
-                <MenuItem 
-                  value="settings" 
-                  closeOnSelect 
+                <MenuItem
+                  value="settings"
+                  closeOnSelect
                   minH={12}
-                  _hover={{ 
+                  _hover={{
                     bg: "bg.subtle",
-                    borderRadius: "xl" 
+                    borderRadius: "xl",
                   }}
                   borderRadius="md"
                   style={{ cursor: "pointer" }}
                 >
-                  <Flex 
-                    align="center" 
-                    gap={4} 
-                    px={3} 
-                    py={2} 
+                  <Flex
+                    align="center"
+                    gap={4}
+                    px={3}
+                    py={2}
                     w="full"
                     justifyContent={"flex-start"}
                   >
@@ -315,23 +321,23 @@ const Sidebar = () => {
                   </Flex>
                 </MenuItem>
               </Link>
-              <MenuItem 
-                value="logout" 
+              <MenuItem
+                value="logout"
                 minH={12}
-                _hover={{ 
-                  bg: "red.subtle", 
+                _hover={{
+                  bg: "red.subtle",
                   color: "red.emphasized",
-                  borderRadius: "xl" 
+                  borderRadius: "xl",
                 }}
                 borderRadius="md"
-                onClick={() => logout()} 
+                onClick={() => logout()}
                 style={{ cursor: "pointer" }}
               >
-                <Flex 
-                  align="center" 
-                  gap={4} 
-                  px={3} 
-                  py={2} 
+                <Flex
+                  align="center"
+                  gap={4}
+                  px={3}
+                  py={2}
                   w="full"
                   justifyContent={"flex-start"}
                 >

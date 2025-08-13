@@ -1,4 +1,5 @@
 /// <reference types="vite/client" />
+import "./index.css";
 import {
   MutationCache,
   QueryCache,
