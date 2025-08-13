@@ -39,7 +39,7 @@ const SidebarItems = ({ onClose, collapsed = false }: SidebarItemsProps) => {
         )}
         title={collapsed ? title : undefined}
       >
-        <IconComponent className="" />
+        <IconComponent className="w-5 h-5" />
         {!collapsed && (
           <span className="ml-1 font-medium text-base">{title}</span>
         )}
